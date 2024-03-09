@@ -1,10 +1,10 @@
 import torch
 from torch import nn
 from torch.nn import functional as F 
-from .decoder import VAE_AttentionBlock, VAE_ResidualBlock
+from vae.decoder import VAE_AttentionBlock, VAE_ResidualBlock
 
 
-class VAE_Encodder(nn.Sequential):
+class VAE_Encoder(nn.Sequential):
     
     def __init__(self):
         super().__init__(
@@ -57,13 +57,13 @@ class VAE_Encodder(nn.Sequential):
             nn.GroupNorm(32, 512),
 
             # (batch_size, 512, height / 8, width / 8) -> (batch_size, 512, height / 8, width / 8)
-            nn.Silu(),
+            nn.SiLU(),
 
             # (batch_size, 512, height / 8, width / 8) -> (batch_size, 8, height / 8, width / 8)
             nn.Conv2d(512, 8, kernel_size=3, padding=1),
 
             # (batch_size, 8, height / 8, width / 8) -> (batch_size, 8, height / 8, width / 8)
-            nn.Conv2d(8, 8, kernel_size=3, padding=0),
+            nn.Conv2d(8, 8, kernel_size=1, padding=0),
         )
 
     def forward(self, x: torch.Tensor, noise: torch.Tensor) -> torch.Tensor:
