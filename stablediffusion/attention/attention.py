@@ -15,7 +15,7 @@ class SelfAttention(nn.Module):
         # x: (batch_size, seq_len, dim)
         
         input_shape = x.shape
-        batch_size, sequence_length, d_embed = input_shape
+        batch_size, sequence_length, d_embed = input_shape 
         intermed_shape = (batch_size, sequence_length, self.n_heads, self.d_head)
 
         # (batch_size, seq_len, dim) -> (batch_size, seq_len, dim*3) -> split into 3 tensor of shape (batch_size, seq_len, dim)
