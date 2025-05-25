@@ -2,7 +2,7 @@
 This repository includes the implementation for Latent stable diffusion using pytorch
 
 # Samples:
-![Scene](images/scene.jpg) ![Camera](images/output.jpg)
+![Scene](images/scene.jpg)
 
 ## Download weights and tokenizer files
 1. Download vocab.json and merges.txt from https://huggingface.co/runwayml/stable-diffusion-v1-5/tree/main/tokenizer and save them in the data folder
